@@ -115,6 +115,8 @@ const Swipeout = React.createClass({
       rowID: -1,
       sectionID: -1,
       sensitivity: 0,
+      marginLeft: 0,
+      marginRight: 0
     };
   },
 
@@ -172,8 +174,8 @@ const Swipeout = React.createClass({
       }
       this.setState({
         btnWidth: buttonWidth,
-        btnsLeftWidth: totalLeftWidth,
-        btnsRightWidth: totalRightWidth,
+        btnsLeftWidth: totalLeftWidth + this.props.marginLeft,
+        btnsRightWidth: totalRightWidth + this.props.marginRight,
         swiping: true,
         timeStart: (new Date()).getTime(),
       });
@@ -293,12 +295,14 @@ const Swipeout = React.createClass({
         left: 0,
         overflow: 'hidden',
         width: Math.min(limit*(posX/limit), limit),
+        marginLeft: this.props.marginLeft
       },
     };
     var styleRightPos = {
       right: {
         left: Math.abs(contentWidth + Math.max(limit, posX)),
         right: 0,
+        marginRight: this.props.marginRight
       },
     };
     var styleContentPos = {
